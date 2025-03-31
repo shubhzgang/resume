@@ -13,8 +13,9 @@
     
     
     <style>
-      /* Define CSS Variables for Theming (Unchanged) */
+      /* Define CSS Variables for Theming */
       :root {
+        /* Base colors and light theme variables (mostly unchanged) */
         --bg-base: #f3f4f6; /* gray-100 */
         --bg-card: #ffffff; /* white */
         --bg-nav: #ffffff; /* white */
@@ -40,9 +41,11 @@
         --text-link-hover: #3730a3; /* indigo-800 */
 
         --border-color: #e5e7eb; /* gray-200 */
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --shadow-color-hover: rgba(0, 0, 0, 0.15);
+        /* Light Shadow Variables for Hover Effect */
+        --shadow-color: rgba(0, 0, 0, 0.15); /* Base for hover */
+        --shadow-color-hover: rgba(0, 0, 0, 0.22); /* Enhanced hover */
 
+        /* Tag colors (unchanged) */
         --tag-java-bg: #e0f2fe; /* sky-100 */
         --tag-java-text: #0c4a6e; /* sky-800 */
         --tag-kafka-bg: #dbeafe; /* blue-100 */
@@ -64,6 +67,7 @@
       }
 
       html[data-theme='dark'] {
+        /* Dark theme base colors (unchanged) */
         --bg-base: #111827; /* gray-900 */
         --bg-card: #1f2937; /* gray-800 */
         --bg-nav: #1f2937; /* gray-800 */
@@ -89,10 +93,13 @@
         --text-link-hover: #a5b4fc; /* indigo-300 */
 
         --border-color: #374151; /* gray-700 */
-        --shadow-color: rgba(255, 255, 255, 0.05);
-        --shadow-color-hover: rgba(255, 255, 255, 0.1);
+         /* Dark Shadow & Glow Variables for Hover Effect */
+        --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle dark base shadow */
+        --shadow-color-hover: rgba(0, 0, 0, 0.15); /* Subtle dark base shadow hover */
+        --glow-color: rgba(129, 140, 248, 0.3); /* Glow color for hover */
+        --glow-color-hover: rgba(129, 140, 248, 0.5); /* Enhanced glow color for hover */
 
-        /* Dark theme tags might need adjustment for contrast */
+        /* Dark theme tag colors (unchanged) */
         --tag-java-bg: #0c4a6e; /* sky-800 */
         --tag-java-text: #e0f2fe; /* sky-100 */
         --tag-kafka-bg: #1e40af; /* blue-800 */
@@ -123,9 +130,7 @@
       /* Lucide Icons Font */
       @font-face {
         font-family: 'LucideIcons';
-        /* UPDATED URL to unpkg */
         src: url(https://cdn.jsdelivr.net/npm/lucide-static@0.473.0/font/lucide.ttf) format('truetype');
-        
       }
       .lucide {
         font-family: 'LucideIcons';
@@ -187,6 +192,27 @@
        .theme-toggle-btn:hover {
          background-color: var(--bg-hover);
          color: var(--text-heading);
+       }
+
+       /* Card Shadow/Glow Styling */
+       .card-base {
+         /* Apply transition for smooth effect changes */
+         transition: box-shadow 0.3s ease;
+       }
+
+       /* Light theme uses Tailwind utilities directly in HTML: */
+       /* base shadow: shadow-lg */
+       /* hover shadow: hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)] */
+
+       /* Dark theme glow effect (only on hover) */
+       html[data-theme='dark'] .card-glowing {
+         /* Apply only the subtle base shadow by default */
+         box-shadow: 0 2px 5px 0 var(--shadow-color);
+       }
+       html[data-theme='dark'] .card-glowing:hover {
+         /* Apply enhanced base shadow AND glow on hover */
+         box-shadow: 0 4px 8px 0 var(--shadow-color-hover), /* Enhanced base */
+                     0 0 25px 5px var(--glow-color-hover); /* Enhanced glow */
        }
 
     </style>
@@ -333,22 +359,37 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-text-heading">Core Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 
-                <div class="bg-bg-card p-8 rounded-lg shadow-[0_4px_10px_var(--shadow-color)] hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300">
-                     <span class="lucide text-4xl text-text-link mb-4 inline-block">&#xe0b7;</span> 
-                     <h3 class="text-xl font-semibold mb-2 text-text-heading">Java & Frameworks</h3>
-                    <p class="text-text-muted">Expertise in core Java, Micronaut, and related technologies for building high-performance backend applications and microservices.</p>
+                
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-card p-6 rounded-lg shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     <span class="lucide text-3xl text-text-link mb-3 inline-block">&#xe0b7;</span> 
+                     
+                     <h3 class="text-base font-semibold mb-2 text-text-heading">Java & Frameworks</h3>
+                    <p class="text-text-muted text-sm">Expertise in core Java, Micronaut, and related technologies for building high-performance backend applications and microservices.</p>
                 </div>
                 
-                <div class="bg-bg-card p-8 rounded-lg shadow-[0_4px_10px_var(--shadow-color)] hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300">
-                    <span class="lucide text-4xl text-text-link mb-4 inline-block">&#xe44b;</span> 
-                    <h3 class="text-xl font-semibold mb-2 text-text-heading">Apache Kafka</h3>
-                    <p class="text-text-muted">Designing, implementing, and maintaining scalable, real-time data pipelines and event-driven systems using Kafka and Avro.</p>
+                
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-card p-6 rounded-lg shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                    <span class="lucide text-3xl text-text-link mb-3 inline-block">&#xe44b;</span> 
+                    
+                    <h3 class="text-base font-semibold mb-2 text-text-heading">Apache Kafka</h3>
+                    <p class="text-text-muted text-sm">Designing, implementing, and maintaining scalable, real-time data pipelines and event-driven systems using Kafka and Avro.</p>
                 </div>
                 
-                <div class="bg-bg-card p-8 rounded-lg shadow-[0_4px_10px_var(--shadow-color)] hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300">
-                     <span class="lucide text-4xl text-text-link mb-4 inline-block">&#xe4b1;</span> 
-                     <h3 class="text-xl font-semibold mb-2 text-text-heading">Microservices & Cloud Native</h3>
-                    <p class="text-text-muted">Architecting, developing, and deploying distributed systems using microservices patterns with Kubernetes, Helm, and Docker.</p>
+                
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-card p-6 rounded-lg shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     <span class="lucide text-3xl text-text-link mb-3 inline-block">&#xe4b1;</span> 
+                     
+                     <h3 class="text-base font-semibold mb-2 text-text-heading">Microservices & Cloud Native</h3>
+                    <p class="text-text-muted text-sm">Architecting, developing, and deploying distributed systems using microservices patterns with Kubernetes, Helm, and Docker.</p>
                 </div>
             </div>
              
@@ -368,11 +409,16 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 
-                <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                    <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Kafka+System" alt="Kafka Event System Enhancement" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Kafka Event System Enhancement</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Performed maintenance and developed features for a Kafka-based event system, improving reliability and supporting processing of up to 10 million data packets.</p>
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                    
+                    <img src="https://placehold.co/600x320/3B82F6/FFFFFF?text=Kafka+System" alt="Kafka Event System Enhancement" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Kafka Event System Enhancement</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Performed maintenance and developed features for a Kafka-based event system, improving reliability and supporting processing of up to 10 million data packets.</p>
                         <div class="mt-auto">
                             <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                             <span class="inline-block bg-tag-kafka-bg text-tag-kafka-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Kafka</span>
@@ -382,11 +428,16 @@
                 </div>
                 
                 
-                <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                     <img src="https://placehold.co/600x400/10B981/FFFFFF?text=Caching+System" alt="Baseline Data Caching System" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Baseline Data Caching System</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Designed and implemented a caching system for calculated baseline data, significantly enhancing service efficiency and reducing latency in Kafka topic processing.</p>
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     
+                     <img src="https://placehold.co/600x320/10B981/FFFFFF?text=Caching+System" alt="Baseline Data Caching System" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Baseline Data Caching System</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Designed and implemented a caching system for calculated baseline data, significantly enhancing service efficiency and reducing latency in Kafka topic processing.</p>
                          <div class="mt-auto">
                              <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                              <span class="inline-block bg-tag-caching-bg text-tag-caching-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Caching</span>
@@ -397,11 +448,16 @@
                 </div>
                 
                 
-                <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                     <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Alerting+System" alt="Kubernetes Alerting System" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Kubernetes Alerting System</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Contributed to designing and implementing an efficient 'Alerting on Events' system processing up to 2 million Kubernetes events/logs via the existing Kafka pipeline.</p>
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     
+                     <img src="https://placehold.co/600x320/8B5CF6/FFFFFF?text=Alerting+System" alt="Kubernetes Alerting System" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Kubernetes Alerting System</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Contributed to designing and implementing an efficient 'Alerting on Events' system processing up to 2 million Kubernetes events/logs via the existing Kafka pipeline.</p>
                         <div class="mt-auto">
                             <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                             <span class="inline-block bg-tag-kafka-bg text-tag-kafka-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Kafka</span>
@@ -412,11 +468,16 @@
                 </div>
 
                 
-                <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                     <img src="https://placehold.co/600x400/f472b6/FFFFFF?text=CRUD+APIs" alt="CRUD APIs & Configuration" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Configuration & API Development</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Designed and implemented CRUD APIs for efficient configuration storage/retrieval and features to handle varying data ingestion rates within microservices.</p>
+                
+                
+                
+                <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     
+                     <img src="https://placehold.co/600x320/f472b6/FFFFFF?text=CRUD+APIs" alt="CRUD APIs & Configuration" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Configuration & API Development</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Designed and implemented CRUD APIs for efficient configuration storage/retrieval and features to handle varying data ingestion rates within microservices.</p>
                         <div class="mt-auto">
                             <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                             <span class="inline-block bg-tag-microservices-bg text-tag-microservices-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Microservices</span>
@@ -426,11 +487,16 @@
                 </div>
 
                  
-                 <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                     <img src="https://placehold.co/600x400/fbbf24/FFFFFF?text=Operator+Framework" alt="Operator Framework & Debugging" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Operator Framework & Debugging</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Created an operator framework enabling runtime log generation and viewing of Kafka state stores, significantly improving debugging efficiency.</p>
+                 
+                 
+                 
+                 <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     
+                     <img src="https://placehold.co/600x320/fbbf24/FFFFFF?text=Operator+Framework" alt="Operator Framework & Debugging" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Operator Framework & Debugging</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Created an operator framework enabling runtime log generation and viewing of Kafka state stores, significantly improving debugging efficiency.</p>
                         <div class="mt-auto">
                             <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                             <span class="inline-block bg-tag-k8s-bg text-tag-k8s-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Kubernetes</span>
@@ -441,11 +507,16 @@
                 </div>
 
                  
-                 <div class="bg-bg-secondary rounded-lg shadow-[0_4px_10px_var(--shadow-color)] overflow-hidden hover:shadow-[0_6px_15px_var(--shadow-color-hover)] transition duration-300 flex flex-col">
-                     <img src="https://placehold.co/600x400/a3e635/FFFFFF?text=Testing" alt="Testing & Reliability" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-text-heading">Testing & Reliability</h3>
-                        <p class="text-text-muted mb-4 flex-grow">Enhanced service reliability and quality by implementing comprehensive unit tests (improving code coverage) and component tests for end-to-end validation.</p>
+                 
+                 
+                 
+                 <div class="card-base card-glowing bg-bg-secondary rounded-lg overflow-hidden flex flex-col shadow-lg hover:shadow-[0_10px_25px_2px_var(--shadow-color-hover)]">
+                     
+                     <img src="https://placehold.co/600x320/a3e635/FFFFFF?text=Testing" alt="Testing & Reliability" class="w-full h-40 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x320/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow"> 
+                        
+                        <h3 class="text-base font-semibold mb-2 text-text-heading">Testing & Reliability</h3>
+                        <p class="text-text-muted text-sm mb-3 flex-grow">Enhanced service reliability and quality by implementing comprehensive unit tests (improving code coverage) and component tests for end-to-end validation.</p>
                          <div class="mt-auto">
                             <span class="inline-block bg-tag-java-bg text-tag-java-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Java</span>
                             <span class="inline-block bg-tag-testing-bg text-tag-testing-text text-xs font-semibold mr-2 mb-1 px-2.5 py-0.5 rounded">Testing</span>
@@ -569,7 +640,7 @@
                 }
             });
 
-            // --- NEW: JavaScript Smooth Scrolling ---
+            // --- JavaScript Smooth Scrolling ---
             const navLinks = document.querySelectorAll('a.nav-link[href^="#"]'); // Select only links starting with # and having nav-link class
 
             navLinks.forEach(link => {
